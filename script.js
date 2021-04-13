@@ -8,7 +8,6 @@ const p = document.getElementById('p'),
 let n = f = e = d = 0,
     arrayOfPrimes = [],
     arrayOfCoprimes = [],
-    arrayOfDecrypt = [],
     encryptedMessage = [];
 
 encrypt.addEventListener('click', () => {
@@ -23,32 +22,40 @@ encrypt.addEventListener('click', () => {
 
     e = arrayOfCoprimes[0];
 
-    console.log(`Закрытый ключ: ${e}, ${n}`);
+    console.log(`Публичный ключ: ${e}, ${n}`);
 
-    for (let i = 1; i < 1000; i++) {
-        if ((i * e) % f === 1) arrayOfDecrypt.push(i);
+    let flag = 1,
+        i = 1;
+
+    while(flag) {
+
+        if ((i * e) % f == 1 && i > f) {
+            d = i;
+            flag--;
+        }
+
+        i++;
     }
 
-    arrayOfDecrypt[0] === e ? d = arrayOfDecrypt[1] : d = arrayOfDecrypt[0];
+    console.log(`Закрытый ключ: ${d}, ${n}`);
 
-    console.log(`Публичный ключ: ${d}, ${n}`);
+    encryptedMessage = (message.value ** e) % n;
 
-    encryptedMessage = ((message.value ** e) % n);
+    console.log(`Зашифрованное сообщение: ${encryptedMessage}`);
 });
 
 decrypt.addEventListener('click', () => {
     const d = document.getElementById('d'),
           n = document.getElementById('n');
 
-    console.log(`Расшифрованное сообщение: ${((encryptedMessage ** d.value) % n.value)}`);
+    let decryptedMessage = (BigInt(encryptedMessage) ** BigInt(d.value)) % BigInt(n.value);
+
+    console.log(`Расшифрованное сообщение: ${decryptedMessage}`);
 
 });
 
 
-
-
-
-
+//Функция нахождения простых чисел
 function isPrime(number, array) {
     nextPrime:
     for (let i = 3; i <= number; i++) { // Для всех i...
@@ -61,7 +68,8 @@ function isPrime(number, array) {
     }
 }
 
-function isCoprime(a, b) {
+//Функция нахождения взаимно простых чисел
+function isCoprime(a, b) { 
     let memory = b;
     let NOD = 0;
     while (b) {
@@ -73,6 +81,4 @@ function isCoprime(a, b) {
         arrayOfCoprimes.push(memory);
     }
 }
-
-
 
