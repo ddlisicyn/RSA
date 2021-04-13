@@ -7,7 +7,7 @@ message = 49
 
 encrypted message = 14
 
-d = 103, 77
+d = 103, n = 77
 
 Wikipedia article - https://ru.wikipedia.org/wiki/RSA
 
