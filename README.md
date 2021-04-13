@@ -1,5 +1,5 @@
 # RSA
-Simple RSA Algorithm working with small nunmbers, for example:
+Simple RSA Algorithm working with small numbers, for example:
 n = 7, q = 11 
 message = 49
 encrypted message = 14
