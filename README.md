@@ -1,8 +1,12 @@
 # RSA
 Simple RSA Algorithm working with small numbers, for example:
+
 n = 7, q = 11 
+
 message = 49
+
 encrypted message = 14
+
 d = 103, 77
 
 Wikipedia article - https://ru.wikipedia.org/wiki/RSA
